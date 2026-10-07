@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinancePro — Settings</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+  <link href="../css/responsive.css" rel="stylesheet">
+</head>
+<body>
+  <div class="sidebar-overlay"></div>
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo"><i class="bi bi-graph-up-arrow"></i></div>
+      <div><h1>FinancePro</h1><small>Your Money · Better Tomorrow</small></div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="../index.html" class="nav-item"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+      <a href="transactions.html" class="nav-item"><i class="bi bi-arrow-left-right"></i> Transactions</a>
+      <a href="add-income.html" class="nav-item"><i class="bi bi-plus-circle"></i> Add Income</a>
+      <a href="add-expense.html" class="nav-item"><i class="bi bi-dash-circle"></i> Add Expense</a>
+      <a href="budgets.html" class="nav-item"><i class="bi bi-pie-chart"></i> Budgets</a>
+      <a href="savings.html" class="nav-item"><i class="bi bi-piggy-bank"></i> Savings Goals</a>
+      <a href="reports.html" class="nav-item"><i class="bi bi-bar-chart-line"></i> Reports</a>
+      <a href="settings.html" class="nav-item active"><i class="bi bi-gear"></i> Settings</a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="theme-toggle">
+        <i class="bi bi-moon-stars"></i>
+        <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" id="themeToggle"></div>
+        <i class="bi bi-sun"></i>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-content">
+    <header class="top-header">
+      <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="bi bi-list"></i></button>
+      <h5 class="mb-0 ms-2">Settings</h5>
+      <div class="header-actions">
+        <div class="user-profile">
+          <img src="https://ui-avatars.com/api/?name=Natnael+Ameha&background=10b981&color=fff" alt="User">
+          <div class="info"><div class="name">Natnael Ameha</div><div class="role">Premium Member</div></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div class="page-title"><h2><i class="bi bi-gear me-2"></i>Settings</h2></div>
+
+      <div class="row g-4">
+        <!-- Profile -->
+        <div class="col-md-6">
+          <div class="section-card">
+            <div class="card-header"><h5><i class="bi bi-person"></i> Profile</h5></div>
+            <form id="profileForm">
+              <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" id="setName">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" id="setEmail">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Currency</label>
+                <select class="form-select" id="setCurrency">
+                  <option value="USD">USD ($)</option>
+                  <option value="EUR">EUR (€)</option>
+                  <option value="GBP">GBP (£)</option>
+                  <option value="ETB">ETB (Br)</option>
+                </select>
+              </div>
+              <button type="submit" class="btn-primary-custom">Save Profile</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Appearance & Notifications -->
+        <div class="col-md-6">
+          <div class="section-card mb-3">
+            <div class="card-header"><h5><i class="bi bi-palette"></i> Appearance</h5></div>
+            <div class="d-flex align-items-center justify-content-between py-2">
+              <span>Dark / Light Mode</span>
+              <div class="form-check form-switch m-0">
+                <input class="form-check-input" type="checkbox" id="settingsThemeToggle">
+              </div>
+            </div>
+          </div>
+          <div class="section-card">
+            <div class="card-header"><h5><i class="bi bi-bell"></i> Notifications</h5></div>
+            <div class="d-flex align-items-center justify-content-between py-2 border-bottom" style="border-color:var(--border-color)!important">
+              <span>Budget Warning</span>
+              <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" id="notifBudget" checked></div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between py-2 border-bottom" style="border-color:var(--border-color)!important">
+              <span>Savings Reminder</span>
+              <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" id="notifSavings" checked></div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between py-2">
+              <span>Monthly Report</span>
+              <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" id="notifReport"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Management -->
+        <div class="col-12">
+          <div class="section-card">
+            <div class="card-header"><h5><i class="bi bi-database"></i> Data Management</h5></div>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn-primary-custom" onclick="exportData()"><i class="bi bi-download me-1"></i> Export Data (JSON)</button>
+              <button class="btn-secondary-custom" onclick="clearData()"><i class="bi bi-trash me-1"></i> Clear All Data</button>
+              <button class="btn-secondary-custom" onclick="resetDashboard()"><i class="bi bi-arrow-clockwise me-1"></i> Reset to Sample Data</button>
+            </div>
+            <p class="text-muted mt-3 mb-0" style="font-size:0.8rem;">All data is stored locally in your browser (LocalStorage). Clearing data cannot be undone.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="app-footer">© 2025 FinancePro</footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const s = Storage.getSettings();
+      document.getElementById('setName').value = s.name || '';
+      document.getElementById('setEmail').value = s.email || '';
+      document.getElementById('setCurrency').value = s.currency || 'USD';
+      document.getElementById('notifBudget').checked = s.notifications?.budgetWarning ?? true;
+      document.getElementById('notifSavings').checked = s.notifications?.savingsReminder ?? true;
+      document.getElementById('notifReport').checked = s.notifications?.monthlyReport ?? false;
+
+      const theme = Storage.getTheme();
+      document.getElementById('settingsThemeToggle').checked = theme === 'light';
+      document.getElementById('settingsThemeToggle').addEventListener('change', function() {
+        const t = this.checked ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', t);
+        Storage.setTheme(t);
+        const mainToggle = document.getElementById('themeToggle');
+        if (mainToggle) mainToggle.checked = this.checked;
+      });
+    });
+
+    document.getElementById('profileForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const settings = {
+        name: document.getElementById('setName').value,
+        email: document.getElementById('setEmail').value,
+        currency: document.getElementById('setCurrency').value,
+        notifications: {
+          budgetWarning: document.getElementById('notifBudget').checked,
+          savingsReminder: document.getElementById('notifSavings').checked,
+          monthlyReport: document.getElementById('notifReport').checked
+        }
+      };
+      Storage.saveSettings(settings);
+      App.showToast('Settings saved successfully');
+    });
+
+    function exportData() {
+      const data = Storage.exportData();
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'financepro-data.json';
+      a.click();
+      URL.revokeObjectURL(url);
+      App.showToast('Data exported');
+    }
+
+    function clearData() {
+      if (!App.confirm('This will permanently delete ALL your data. Continue?')) return;
+      Storage.clearAll();
+      App.showToast('All data cleared');
+      setTimeout(() => location.reload(), 500);
+    }
+
+    function resetDashboard() {
+      if (!App.confirm('Reset to sample data? Current data will be lost.')) return;
+      Storage.clearAll();
+      Storage.initSampleData();
+      App.showToast('Reset to sample data');
+      setTimeout(() => location.reload(), 500);
+    }
+  </script>
+</body>
+</html>

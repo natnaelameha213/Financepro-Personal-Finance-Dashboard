@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinancePro — Add Expense</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+  <link href="../css/responsive.css" rel="stylesheet">
+</head>
+<body>
+  <div class="sidebar-overlay"></div>
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo"><i class="bi bi-graph-up-arrow"></i></div>
+      <div><h1>FinancePro</h1><small>Your Money · Better Tomorrow</small></div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="../index.html" class="nav-item"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+      <a href="transactions.html" class="nav-item"><i class="bi bi-arrow-left-right"></i> Transactions</a>
+      <a href="add-income.html" class="nav-item"><i class="bi bi-plus-circle"></i> Add Income</a>
+      <a href="add-expense.html" class="nav-item active"><i class="bi bi-dash-circle"></i> Add Expense</a>
+      <a href="budgets.html" class="nav-item"><i class="bi bi-pie-chart"></i> Budgets</a>
+      <a href="savings.html" class="nav-item"><i class="bi bi-piggy-bank"></i> Savings Goals</a>
+      <a href="reports.html" class="nav-item"><i class="bi bi-bar-chart-line"></i> Reports</a>
+      <a href="settings.html" class="nav-item"><i class="bi bi-gear"></i> Settings</a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="theme-toggle">
+        <i class="bi bi-moon-stars"></i>
+        <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" id="themeToggle"></div>
+        <i class="bi bi-sun"></i>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-content">
+    <header class="top-header">
+      <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="bi bi-list"></i></button>
+      <h5 class="mb-0 ms-2">Add Expense</h5>
+      <div class="header-actions">
+        <div class="user-profile">
+          <img src="https://ui-avatars.com/api/?name=Natnael+Ameha&background=10b981&color=fff" alt="User">
+          <div class="info"><div class="name">Natnael Ameha</div><div class="role">Premium Member</div></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div class="form-card">
+        <div class="text-center mb-4">
+          <div style="width:60px;height:60px;border-radius:16px;background:rgba(236,72,153,0.15);color:#ec4899;display:inline-flex;align-items:center;justify-content:center;font-size:1.5rem;">
+            <i class="bi bi-dash-circle"></i>
+          </div>
+          <h3 class="mt-3 mb-1">Add New Expense</h3>
+          <p class="text-muted" style="font-size:0.9rem;">Record a new expense transaction</p>
+        </div>
+        <form id="expenseForm">
+          <div class="mb-3">
+            <label class="form-label">Description *</label>
+            <input type="text" class="form-control" id="description" placeholder="e.g. Grocery Shopping" required>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Amount *</label>
+              <input type="number" step="0.01" min="0.01" class="form-control" id="amount" placeholder="0.00" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Category *</label>
+              <select class="form-select" id="category" required>
+                <option value="Food">🍔 Food</option>
+                <option value="Rent">🏠 Rent</option>
+                <option value="Transport">🚗 Transport</option>
+                <option value="Shopping">🛍️ Shopping</option>
+                <option value="Entertainment">🎮 Entertainment</option>
+                <option value="Bills">💡 Bills</option>
+                <option value="Health">❤️ Health</option>
+                <option value="Education">📚 Education</option>
+                <option value="Other">📦 Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Date *</label>
+              <input type="date" class="form-control" id="date" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Payment Method</label>
+              <select class="form-select" id="payment">
+                <option>Card</option>
+                <option>Bank</option>
+                <option>Cash</option>
+                <option>Mobile Money</option>
+              </select>
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Notes</label>
+            <textarea class="form-control" id="notes" rows="3" placeholder="Optional notes..."></textarea>
+          </div>
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn-primary-custom flex-fill" style="background:linear-gradient(135deg,#ec4899,#db2777);"><i class="bi bi-check-lg me-1"></i> Add Expense</button>
+            <a href="../index.html" class="btn-secondary-custom">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <footer class="app-footer">© 2025 FinancePro</footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    document.getElementById('date').valueAsDate = new Date();
+    document.getElementById('expenseForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const tx = {
+        description: document.getElementById('description').value.trim(),
+        amount: parseFloat(document.getElementById('amount').value),
+        category: document.getElementById('category').value,
+        date: document.getElementById('date').value,
+        type: 'expense',
+        payment: document.getElementById('payment').value,
+        notes: document.getElementById('notes').value.trim()
+      };
+      if (!tx.description || !tx.amount || tx.amount <= 0) {
+        App.showToast('Please fill all required fields', 'error');
+        return;
+      }
+      Storage.addTransaction(tx);
+      App.showToast('✓ Expense added successfully');
+      setTimeout(() => window.location.href = '../index.html', 800);
+    });
+  </script>
+</body>
+</html>
